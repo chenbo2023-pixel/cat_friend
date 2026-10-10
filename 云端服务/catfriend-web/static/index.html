@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>猫岗</title>
+  <meta name="theme-color" content="#0f172a">
+  <!-- iOS PWA：添加到主屏幕后全屏独立运行 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="猫岗">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header id="statusbar">
+    <span id="status-dot" class="dot offline"></span>
+    <span id="status-text">离线</span>
+    <span id="latency"></span>
+  </header>
+
+  <main id="video-area">
+    <!-- 视频流接入后由JS设置srcObject；muted+playsinline是iOS自动播放的前置条件 -->
+    <video muted playsinline autoplay></video>
+    <div id="video-placeholder">视频流待接入</div>
+  </main>
+
+  <div id="flash" aria-live="polite"></div>
+
+  <footer id="controls">
+    <div id="gimbal">
+      <button data-dir="up" aria-label="上">▲</button>
+      <div class="row">
+        <button data-dir="left" aria-label="左">◀</button>
+        <button id="btn-center">归中</button>
+        <button data-dir="right" aria-label="右">▶</button>
+      </div>
+      <button data-dir="down" aria-label="下">▼</button>
+      <div id="angle-display">pan 0° · tilt 0°</div>
+    </div>
+    <div id="actuators">
+      <button id="btn-wand">逗猫棒</button>
+      <button id="btn-speaker">喇叭</button>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
