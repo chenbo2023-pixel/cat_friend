@@ -1,0 +1,17 @@
+# 要求树莓派 WireGuard 10.0.0.3 已就绪，摄像头没有被其他程序占用。
+[server]
+listen = "10.0.0.3:8090"
+max_viewers = 4
+write_timeout_ms = 10000
+
+[capture]
+source = "rpicam"
+binary = "/usr/bin/rpicam-vid"
+camera = 0
+width = 640
+height = 480
+fps = 5
+quality = 75
+max_frame_bytes = 4194304
+stale_after_ms = 5000
+frame_timeout_ms = 15000

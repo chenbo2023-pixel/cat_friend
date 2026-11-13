@@ -1,3 +1,8 @@
 .DS_Store
 .venv/
 target/
+设备端服务/catfriend-video/config/mac.toml
+设备端服务/catfriend-video/config/pi.toml
+设备端服务/catfriend-video/*.log
+__pycache__/
+/camera_test/

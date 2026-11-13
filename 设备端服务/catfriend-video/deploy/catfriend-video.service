@@ -1,0 +1,20 @@
+# 未来可选模板：当前用户选择 SSH 手动运行，不安装或启用本服务。
+[Unit]
+Description=Catfriend device video service
+Wants=network-online.target
+After=network-online.target wg-quick@wg0.service
+
+[Service]
+Type=simple
+User=cat
+WorkingDirectory=/home/cat/cat_friend/设备端服务/catfriend-video
+ExecStart=/home/cat/cat_friend/设备端服务/catfriend-video/target/release/catfriend-video --config /home/cat/cat_friend/设备端服务/catfriend-video/config/pi.toml
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=10
+KillMode=control-group
+NoNewPrivileges=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

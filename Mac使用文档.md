@@ -115,6 +115,12 @@ ssh cat-pi
 
 编辑器界面在 Mac，文件、远程终端和程序运行在树莓派。
 
+设备端使用现有 `cat_friend` 单仓库，代码放在 `设备端服务/`，不使用子仓库或子模块。视频代码及Mac本地验证已完成；树莓派计划克隆同一仓库至 `/home/cat/cat_friend`，视频项目目录为 `/home/cat/cat_friend/设备端服务/catfriend-video`，仓库克隆、推送认证和Pi实机验收仍待完成。目录职责和Git同步步骤见[设备端目录说明](设备端服务/README.md)，本地及Pi运行步骤见[视频服务说明](设备端服务/catfriend-video/README.md)。
+
+在树莓派编辑后，验证并提交、推送，再在Mac检查工作区状态并用 `git pull --ff-only` 拉取；在Mac开发时反向操作。Remote SSH保存的是树莓派文件，Git不会自动同步两边工作副本，也不会自动构建或重启服务。
+
+视频采用SSH前台手动运行：部署后在远程终端进入视频项目目录，执行 `./target/release/catfriend-video --config config/pi.toml`；用完按Ctrl-C并等待退出，再关闭SSH。运行期间持续采集，关闭手机网页不停止相机；当前不安装或启用视频自启动。
+
 当前 VS Code 为 `1.135.0`，Server commit 为 `08d4889f9ec4a1685d257b9b95de036c8e1ce1e5`。匹配的 ARM64 Server 已在 Mac 下载，并通过局域网传输、安装到树莓派。
 
 初次安装时曾使用本机下载和兼容启动方式，并在该设置下验证两种入口连接成功。由于用户级设置也影响 `dev` 等其他主机，现已按用户要求移除添加的 `remote.SSH.localServerDownload`、`remote.SSH.useExecServer`、`remote.SSH.showLoginTerminal` 和 `remote.SSH.remotePlatform`，恢复扩展默认行为。
@@ -174,6 +180,6 @@ sudo /opt/homebrew/bin/bash /opt/homebrew/bin/wg-quick down /Users/chenbo21/.con
 
 1. 重启树莓派，验证家庭网络、WireGuard 和 SSH 自动恢复。
 2. 独立供电方式确认，并验证断网恢复和长时间运行；外部网络下的 SSH 和 VS Code 已实际连接成功，手机热点场景可另行复验。
-3. 摄像头识别、拍照已通过，下一步先设计独立监控；微雪安装和执行器控制暂缓。
+3. 摄像头识别、拍照及设备端监控代码本地验证已通过；下一步完成树莓派仓库克隆、推送认证、视频手动部署和Android显示验收；微雪安装和执行器控制暂缓。
 
 相关资料：[技术方案设计](技术方案设计.md)、[硬件组装与树莓派配置操作指南](硬件组装与树莓派配置操作指南.md)。
